@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import headerLogo from '/src/assets/diamondLogo.png'
+
+//import Header from './Header
+
+
 import './App.css'
 
 function App() {
@@ -9,13 +14,17 @@ function App() {
   return (
     <>
       <div className='body'>
+
+          {/* <Header /> */}
           <header className='header'>
-            <a href='#default' class="logo">CompanyLogo</a>
+            <a href='#default' class="logo">
+              <img src={headerLogo} className='logo'/>
+              </a>
             <div className='headerRight'>
-              <a className='active' href ="home">Intro</a>
-              <a className='active' href ="home">Work</a>
-              <a className='active' href ="home">Projects</a>
-              <a className='active' href ="home">Contact</a>
+              <a className='' href ="/">Intro</a>
+              <a className='' href ="/">Work</a>
+              <a className='' href ="/">Projects</a>
+              <a className='' href ="/">Contact</a>
             </div>
           </header>
 
