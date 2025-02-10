@@ -1,43 +1,50 @@
 .logo {
-    padding: 0;
-    margin: 0;
-    transition: filter 300ms, height 0.3s ease;
-    transition: transform 1s ease;
-    height: 5.5em;
+  padding: 0;
+  margin: 0;
+  transition:
+    filter 300ms,
+    height 0.3s ease;
+  transition: transform 1s ease;
+  height: 5.5em;
 }
 
 .logo:hover {
-    transform: rotate(360deg);
-    height: 6em;
+  transform: rotate(360deg);
+  height: 6em;
 }
 
 .header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 2px solid black;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid black;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-nav button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: font-size 0.3s ease, color 0.3s ease;
+.button {
+  font-size: 1rem;
+  font-weight: 800;
+  transition:
+    font-size 0.3s ease,
+    color 0.3s ease;
+  padding: 2em;
+  display: inline;
+  color: grey;
 }
 
-nav button:hover {
-    font-size: 1rem;
-    color: red;
+.button:hover {
+  font-size: 1.2rem;
+  color: red;
 }
 
-/* nav button:active {
-    background-color: dodgerblue;
-    color: white;
-    border: none;
-} */
+.icon {
+  padding: 0 10px;
+}
+
+.icon:hover {
+  cursor: pointer;
+}
