@@ -2,13 +2,12 @@ import Header from './Header'
 import './App.css'
 
 function App() {
-
   return (
     <>
-      <div className='body'>
-          <Header/>
+      <div className="body">
+        <Header />
 
-          <div id="about" className="sample-section max-w-lg mx-auto p-10">
+        <div id="about" className="sample-section max-w-lg mx-auto p-10">
           <h2>About</h2>
           <p>...</p>
         </div>
