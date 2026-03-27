@@ -26,6 +26,26 @@ const ParallaxHeader = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const [activeSection, setActiveSection] = useState('')
+
+useEffect(() => {
+  const sections = document.querySelectorAll('section[id]')
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id)
+        }
+      })
+    },
+    { threshold: 0.7 }
+  )
+
+  sections.forEach((s) => observer.observe(s))
+  return () => observer.disconnect()
+}, [])
+
   const scrollToSection = (id) => {
     const section = document.getElementById(id)
     if (section) {
@@ -61,7 +81,7 @@ const ParallaxHeader = () => {
           {navLinks.map(({ label, id }) => (
             <button
               key={id}
-              className="nav-link"
+              className={`nav-link ${activeSection === id ? 'active' : ''}`}
               onClick={() => scrollToSection(id)}
             >
               {label}
@@ -111,7 +131,7 @@ const ParallaxHeader = () => {
         {navLinks.map(({ label, id }) => (
           <button
             key={id}
-            className="mobile-nav-link"
+            className={`mobile-nav-link ${activeSection === id ? 'active' : ''}`}
             onClick={() => scrollToSection(id)}
           >
             {label}

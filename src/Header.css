@@ -101,6 +101,14 @@
   transform: scaleX(1);
 }
 
+.nav-link.active {
+  color: var(--text);
+}
+
+.nav-link.active::after {
+  transform: scaleX(1);
+}
+
 .contact-icons {
   display: flex;
   align-items: center;
@@ -211,6 +219,10 @@
 .mobile-nav-link:hover {
   color: var(--accent);
   background: var(--surface);
+}
+
+.mobile-nav-link.active {
+  color: var(--accent);
 }
 
 @media (max-width: 640px) {
