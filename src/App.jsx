@@ -16,7 +16,7 @@ function App() {
           <span className="hero-tag">{'// CS Student & Developer'}</span>
           <h1 className="hero-title">
             Your<br />
-            <span className="accent-outline">Name</span>
+            <span className="name-outline">Name</span>
           </h1>
           <p className="hero-sub">
             Building at the intersection of AI, systems, and software engineering.
@@ -33,9 +33,9 @@ function App() {
         </div>
 
         {/* Background effects */}
-        <div className="hero-noise" aria-hidden="true" />
-        <div className="hero-grid" aria-hidden="true" />
-        <div className="hero-glow" aria-hidden="true" />
+        <div className="bg-noise" aria-hidden="true" />
+        <div className="bg-grid"  aria-hidden="true" />
+        <div className="bg-glow"  aria-hidden="true" />
       </section>
 
       {/* ── About ── */}
@@ -48,15 +48,13 @@ function App() {
           <div className="section-body">
             <h2 className="section-title">Who I Am</h2>
             <p className="section-text">
-              {/* Fill in your about text */}
               I'm a Computer Science student at the University of Houston,
-              passionate about machine learning, distributed systems, and
+              passionate about learning new technolgies, distributed systems, and
               building software that actually matters. When I'm not coding
-              I'm grinding LeetCode or reading about AI research.
+              I'm reading fiction books or working out!
             </p>
 
-            {/* Skills / tech stack chips */}
-            <div className="chip-group">
+            <div className="skill-chips">
               {['Python', 'React', 'Node.js', 'R', 'Java', 'SQL', 'Git'].map((s) => (
                 <span key={s} className="chip">{s}</span>
               ))}
@@ -76,7 +74,6 @@ function App() {
             <h2 className="section-title">What I've Built</h2>
 
             <div className="projects-grid">
-              {/* Duplicate / edit these cards */}
               <div className="project-card">
                 <span className="project-tag">React · Node.js · MongoDB</span>
                 <h3 className="project-title">Project One</h3>
@@ -159,16 +156,16 @@ function App() {
       </section>
 
       {/* ── Contact ── */}
-      <section id="contact" className="section section--last">
+      <section id="contact" className="section section-last">
         <div className="section-inner">
           <div className="section-label">
             <span className="label-num">04</span>
             <span className="label-text">Contact</span>
           </div>
           <div className="section-body">
-            <h2 className="section-title contact-big">
+            <h2 className="section-title contact-heading">
               Let's<br />
-              <span className="accent-outline">Talk.</span>
+              <span className="name-outline">Talk.</span>
             </h2>
             <p className="section-text">
               Open to internships, projects, and interesting conversations.
@@ -183,12 +180,8 @@ function App() {
 
       {/* ── Footer ── */}
       <footer className="footer">
-        <span className="footer-text">
-          © 2026 Your Name · Built with React
-        </span>
-        <span className="footer-text">
-          Houston, TX
-        </span>
+        <span className="footer-text">© 2026 Your Name · Built with React</span>
+        <span className="footer-text">Houston, TX</span>
       </footer>
     </div>
   )

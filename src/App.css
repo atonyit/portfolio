@@ -35,16 +35,9 @@ body {
   overflow-x: hidden;
 }
 
-::-webkit-scrollbar {
-  width: 3px;
-}
-::-webkit-scrollbar-track {
-  background: var(--bg);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 0;
-}
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 0; }
 
 .app {
   min-height: 100vh;
@@ -89,7 +82,8 @@ body {
   animation: fadeUp 0.7s var(--ease-out) 0.22s forwards;
 }
 
-.accent-outline {
+/* outline text used in hero title and contact heading */
+.name-outline {
   color: transparent;
   -webkit-text-stroke: 2px var(--accent);
 }
@@ -113,7 +107,9 @@ body {
   animation: fadeUp 0.7s var(--ease-out) 0.46s forwards;
 }
 
-.hero-noise {
+/* decorative background layers */
+
+.bg-noise {
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
@@ -122,7 +118,7 @@ body {
   z-index: 1;
 }
 
-.hero-grid {
+.bg-grid {
   position: absolute;
   inset: 0;
   background-image:
@@ -134,7 +130,7 @@ body {
   mask-image: radial-gradient(ellipse 70% 70% at 80% 80%, transparent 0%, black 60%);
 }
 
-.hero-glow {
+.bg-glow {
   position: absolute;
   top: -20%;
   right: -10%;
@@ -193,7 +189,7 @@ body {
   border-top: 1px solid var(--border);
 }
 
-.section--last {
+.section-last {
   border-bottom: 1px solid var(--border);
 }
 
@@ -251,7 +247,7 @@ body {
   max-width: 560px;
 }
 
-.chip-group {
+.skill-chips {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
@@ -401,7 +397,8 @@ body {
   max-width: 480px;
 }
 
-.contact-big {
+/* bigger font size just for the contact section heading */
+.contact-heading {
   font-size: clamp(3.5rem, 9vw, 8rem);
 }
 
@@ -427,14 +424,8 @@ body {
 }
 
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(28px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 900px) {
@@ -462,17 +453,9 @@ body {
 }
 
 @media (max-width: 480px) {
-  .hero {
-    padding: 6rem 1.25rem 4rem;
-  }
-
-  .section {
-    padding: 5rem 1.25rem;
-  }
-
-  .hero-cta {
-    flex-direction: column;
-  }
+  .hero    { padding: 6rem 1.25rem 4rem; }
+  .section { padding: 5rem 1.25rem; }
+  .hero-cta { flex-direction: column; }
 
   .btn-primary,
   .btn-ghost {
