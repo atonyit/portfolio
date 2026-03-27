@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import Header from './Header'
 import './App.css'
 
@@ -6,6 +7,28 @@ function App() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
 
+  // observe each .section and add 'visible' when it enters the viewport
+  useEffect(() => {
+    const sections = document.querySelectorAll('.section')
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible')
+            // unobserve after it's played once
+            observer.unobserve(entry.target)
+          }
+        })
+      },
+      { threshold: 0.1 }  // triggers when 10% of the section is in view
+    )
+
+    sections.forEach((section) => observer.observe(section))
+
+    return () => observer.disconnect()
+  }, [])
+  
   return (
     <div className="app">
       <Header />
@@ -23,7 +46,7 @@ function App() {
             Based in Houston, TX.
           </p>
           <div className="hero-cta">
-            <button className="btn-primary" onClick={() => scrollTo('project')}>
+            <button className="btn-primary" onClick={() => scrollTo('projects')}>
               View Work
             </button>
             <button className="btn-ghost" onClick={() => scrollTo('contact')}>
@@ -39,7 +62,7 @@ function App() {
       </section>
 
       {/* ── About ── */}
-      <section id="about" className="section">
+      <section id="about" className="section fade-in">
         <div className="section-inner">
           <div className="section-label">
             <span className="label-num">01</span>
@@ -64,7 +87,7 @@ function App() {
       </section>
 
       {/* ── Projects ── */}
-      <section id="project" className="section">
+      <section id="projects" className="section fade-in">
         <div className="section-inner">
           <div className="section-label">
             <span className="label-num">02</span>
@@ -113,7 +136,7 @@ function App() {
       </section>
 
       {/* ── Experience ── */}
-      <section id="experiences" className="section">
+      <section id="experience" className="section fade-in">
         <div className="section-inner">
           <div className="section-label">
             <span className="label-num">03</span>
@@ -156,7 +179,7 @@ function App() {
       </section>
 
       {/* ── Contact ── */}
-      <section id="contact" className="section section-last">
+      <section id="contact" className="section section-last fade-in">
         <div className="section-inner">
           <div className="section-label">
             <span className="label-num">04</span>

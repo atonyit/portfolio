@@ -51,8 +51,8 @@ const ParallaxHeader = () => {
         <nav className="nav" aria-label="Main navigation">
           {[
             { label: 'About', id: 'about' },
-            { label: 'Projects', id: 'project' },
-            { label: 'Experience', id: 'experiences' },
+            { label: 'Projects', id: 'projects' },
+            { label: 'Experience', id: 'experience' },
           ].map(({ label, id }) => (
             <button
               key={id}
