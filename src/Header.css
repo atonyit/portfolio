@@ -21,7 +21,8 @@
   z-index: 100;
   padding: 0 2.4rem;
   background: transparent;
-  transition: background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+  transition:
+    background 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   border-bottom: 1px solid transparent;
 }
@@ -52,11 +53,14 @@
 .logo {
   height: 34px;
   filter: brightness(0) invert(1);
-  transition: filter 0.35s ease, transform 0.35s ease;
+  transition:
+    filter 0.35s ease,
+    transform 0.35s ease;
 }
 
 .logo-wrap:hover .logo {
-  filter: brightness(0) saturate(100%) invert(52%) sepia(72%) saturate(800%) hue-rotate(340deg) brightness(110%);
+  filter: brightness(0) saturate(100%) invert(52%) sepia(72%) saturate(800%)
+    hue-rotate(340deg) brightness(110%);
   transform: rotate(-6deg) scale(1.05);
 }
 
@@ -121,7 +125,9 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  transition: color 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    color 0.25s ease,
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .icon-link:hover {
@@ -168,7 +174,10 @@
   width: 22px;
   height: 1.5px;
   background: var(--muted);
-  transition: transform 0.3s var(--ease-out), opacity 0.3s ease, background 0.2s;
+  transition:
+    transform 0.3s var(--ease-out),
+    opacity 0.3s ease,
+    background 0.2s;
   transform-origin: center;
 }
 
@@ -177,9 +186,15 @@
 }
 
 /* animate the three bars into an X when open */
-.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; }
-.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.hamburger.open span:nth-child(1) {
+  transform: translateY(6.5px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-6.5px) rotate(-45deg);
+}
 
 /* ---- Mobile menu ---- */
 
@@ -213,7 +228,9 @@
   padding: 1.25rem 2rem;
   cursor: pointer;
   text-align: left;
-  transition: color 0.2s, background 0.2s;
+  transition:
+    color 0.2s,
+    background 0.2s;
 }
 
 .mobile-nav-link:hover {
@@ -226,8 +243,16 @@
 }
 
 @media (max-width: 640px) {
-  .nav { display: none; }
-  .hamburger { display: flex; }
-  .mobile-menu { display: flex; }
-  .header { padding: 0 1.25rem; }
+  .nav {
+    display: none;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .mobile-menu {
+    display: flex;
+  }
+  .header {
+    padding: 0 1.25rem;
+  }
 }

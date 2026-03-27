@@ -17,7 +17,8 @@ const ParallaxHeader = () => {
       const scrollY = window.scrollY
       setScrolled(scrollY > 50)
 
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight
+      const totalHeight =
+        document.documentElement.scrollHeight - window.innerHeight
       if (totalHeight > 0) {
         setScrollProgress((scrollY / totalHeight) * 100)
       }
@@ -57,13 +58,12 @@ const ParallaxHeader = () => {
   const navLinks = [
     { label: 'About', id: 'about' },
     { label: 'Projects', id: 'projects' },
-    { label: 'Experience', id: 'experience' },
+    { label: 'Experience', id: 'experience' }
   ]
 
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <div className="header-inner">
-
         {/* clicking logo scrolls back to top */}
         <div
           className="logo-wrap"
@@ -71,7 +71,9 @@ const ParallaxHeader = () => {
           role="button"
           tabIndex={0}
           aria-label="Scroll to top"
-          onKeyDown={(e) => e.key === 'Enter' && window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onKeyDown={(e) =>
+            e.key === 'Enter' && window.scrollTo({ top: 0, behavior: 'smooth' })
+          }
         >
           <img src={headerLogo} alt="Logo" className="logo" />
         </div>
@@ -90,7 +92,11 @@ const ParallaxHeader = () => {
         </nav>
 
         <div className="contact-icons">
-          <a href="mailto:alanitoyah96@gmail.com" className="icon-link" aria-label="Email">
+          <a
+            href="mailto:alanitoyah96@gmail.com"
+            className="icon-link"
+            aria-label="Email"
+          >
             <IoIosMail />
           </a>
           <a
