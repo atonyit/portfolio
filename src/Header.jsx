@@ -49,7 +49,7 @@ useEffect(() => {
   const scrollToSection = (id) => {
     const section = document.getElementById(id)
     if (section) {
-      window.scrollTo({ top: section.offsetTop - 64, behavior: 'smooth' })
+      window.scrollTo({ top: section.offsetTop - 72, behavior: 'smooth' })
     }
     // close menu after clicking a link
     setMenuOpen(false)
