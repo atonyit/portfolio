@@ -7,7 +7,7 @@ function App() {
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
-  
+
   useEffect(() => {
   // small delay so cards are fully painted before we observe them
   const timer = setTimeout(() => {
@@ -201,8 +201,9 @@ function App() {
 
           {/* mini older projects card */}
           <div className="bento-card bento-older">
-            <span className="card-label">Earlier work</span>
+            <span className="card-label">Other work</span>
             <div className="older-links">
+              <a href="https://github.com/ninatra/COSC-4368" target="_blank" rel="noreferrer">Connect Four AI (Minimax/Alpha-Beta)</a>
               <a href="https://github.com/atonyit/leadTracker" target="_blank" rel="noreferrer">Lead Tracker</a>
               <a href="https://github.com/atonyit/addToCart" target="_blank" rel="noreferrer">Add to Cart</a>
               <a href="https://github.com/atonyit/Tic-Tac-Toe" target="_blank" rel="noreferrer">Tic-Tac-Toe</a>
@@ -235,13 +236,14 @@ function App() {
           <div className="bento-card bento-exp bento-exp--accent">
             <div className="exp-header">
               <span className="exp-date">May – Aug 2024</span>
-              <span className="exp-badge">Engineering</span>
+              <span className="exp-badge">Software Engineering</span>
             </div>
             <h3 className="exp-role">Software Engineering Intern</h3>
             <span className="exp-company">Spectral AI</span>
             <p className="exp-desc">
               Owned full SDLC of an internal tagging portal in Vue.js + FastAPI.
-              Built RESTful APIs and modular frontend components in Agile —
+              Built RESTful APIs and modular frontend components in an Agile environment 
+              —
               improved data consistency by 20%.
             </p>
           </div>
