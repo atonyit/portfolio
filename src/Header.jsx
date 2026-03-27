@@ -8,6 +8,7 @@ import { FaLinkedin } from 'react-icons/fa6'
 const ParallaxHeader = () => {
   const [scrolled, setScrolled] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,7 +31,15 @@ const ParallaxHeader = () => {
     if (section) {
       window.scrollTo({ top: section.offsetTop - 64, behavior: 'smooth' })
     }
+    // close menu after clicking a link
+    setMenuOpen(false)
   }
+
+  const navLinks = [
+    { label: 'About', id: 'about' },
+    { label: 'Projects', id: 'projects' },
+    { label: 'Experience', id: 'experience' },
+  ]
 
   return (
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
@@ -47,13 +56,9 @@ const ParallaxHeader = () => {
           <img src={headerLogo} alt="Logo" className="logo" />
         </div>
 
-        {/* Nav */}
+        {/* Desktop nav */}
         <nav className="nav" aria-label="Main navigation">
-          {[
-            { label: 'About', id: 'about' },
-            { label: 'Projects', id: 'projects' },
-            { label: 'Experience', id: 'experience' },
-          ].map(({ label, id }) => (
+          {navLinks.map(({ label, id }) => (
             <button
               key={id}
               className="nav-link"
@@ -66,11 +71,7 @@ const ParallaxHeader = () => {
 
         {/* Contact icons */}
         <div className="contact-icons">
-          <a
-            href="mailto:your@email.com"
-            className="icon-link"
-            aria-label="Email"
-          >
+          <a href="mailto:your@email.com" className="icon-link" aria-label="Email">
             <IoIosMail />
           </a>
           <a
@@ -91,7 +92,31 @@ const ParallaxHeader = () => {
           >
             <FaLinkedin />
           </a>
+
+          {/* Hamburger — only visible on mobile via CSS */}
+          <button
+            className={`hamburger ${menuOpen ? 'open' : ''}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
         </div>
+      </div>
+
+      {/* Mobile menu */}
+      <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
+        {navLinks.map(({ label, id }) => (
+          <button
+            key={id}
+            className="mobile-nav-link"
+            onClick={() => scrollToSection(id)}
+          >
+            {label}
+          </button>
+        ))}
       </div>
 
       {/* Scroll progress */}
