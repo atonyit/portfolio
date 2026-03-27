@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import Header from './Header'
 import resume from './assets/resume.pdf'
 import './App.css'
+import alanPhoto from './assets/alan.jpeg'
 
 function App() {
   const scrollTo = (id) => {
@@ -70,8 +71,7 @@ function App() {
             </div>
           </div>
 
-          {/* big decorative number in the corner */}
-          <span className="hero-deco">01</span>
+          {/* <span className="hero-deco">01</span> */}
         </div>
       </section>
 
@@ -93,6 +93,25 @@ function App() {
               <span>Full-stack dev</span>
               <span>Systems design</span>
               {/* <span>Applied ML</span> */}
+            </div>
+          </div>
+
+          {/* flip card — front shows photo, back shows fun facts */}
+          <div className="bento-card bento-flip-wrap">
+            <div className="flip-card">
+              <div className="flip-front">
+                <img src={alanPhoto} alt="Alan Tony-Itoyah" className="flip-photo" />
+                <span className="flip-hint">flip me ↗</span>
+              </div>
+              <div className="flip-back">
+                <span className="card-label">When I'm not coding...</span>
+                <ul className="fun-facts">
+                  <li>Basketball — I try to hoop as often as I can!</li>
+                  <li>I've been weightlifting since middle school and recently got into distance running</li>
+                  <li>I LOVE reading fiction books!</li>
+                  {/* <li>✈️ Traveling when I can</li> */}
+                </ul>
+              </div>
             </div>
           </div>
 
@@ -277,22 +296,21 @@ function App() {
           </h2>
           <p className="contact-sub">
             Open to internships and new grad roles.
-            I respond fast.
           </p>
           <div className="contact-links">
             <a href="mailto:alanitoyah96@gmail.com" className="btn-primary">
               alanitoyah96@gmail.com →
             </a>
             <a href="tel:4694386126" className="btn-ghost">
-              469-438-6126
+              469-438-6126 →
             </a>
           </div>
         </div>
       </section>
 
       <footer className="footer">
-        <span className="footer-text">© 2026 Alan Tony-Itoyah</span>
-        <span className="footer-text">Houston, TX</span>
+        <span className="footer-text">© Soon...</span>
+        {/* <span className="footer-text">Houston, TX</span> */}
       </footer>
     </div>
   )
