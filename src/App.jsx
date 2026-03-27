@@ -135,7 +135,7 @@ function App() {
                   <li>Basketball — I try to hoop as often as I can!</li>
                   <li>
                     I've been weightlifting since middle school and recently got
-                    into distance running
+                    into distance running.
                   </li>
                   <li>I LOVE reading fiction books!</li>
                   {/* <li>✈️ Traveling when I can</li> */}
@@ -148,9 +148,9 @@ function App() {
           <div className="bento-card bento-currently">
             <span className="card-label">Currently</span>
             <ul className="currently-list">
-              <li>📚 Learning .NET & C#</li>
-              <li>🎯 Grinding LeetCode</li>
-              <li>🚀 Open to 2026 roles</li>
+              <li>Learning .NET & C#</li>
+              <li>Grinding LeetCode</li>
+              <li>Open to 2026 internships</li>
             </ul>
           </div>
 
@@ -227,9 +227,9 @@ function App() {
             <span className="card-label">Unity · C# · Team of 8</span>
             <h3 className="project-name">Michelin Apocalypse</h3>
             <p className="project-blurb">
-              Physics-based co-op restaurant game with four themed levels. Owned
+              Physics-based co-op restaurant game with three themed levels. Owned
               all level design systems — station layouts, navigation flow, and
-              task pressure tuning.
+              level difficulty tuning.
             </p>
             <a
               href="https://github.com/Klawedd/Cooking-Game"
@@ -278,7 +278,7 @@ function App() {
 
           {/* mini older projects card */}
           <div className="bento-card bento-older">
-            <span className="card-label">Other work</span>
+            <span className="card-label">Other projects</span>
             <div className="older-links">
               <a
                 href="https://github.com/ninatra/COSC-4368"
