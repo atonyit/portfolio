@@ -7,9 +7,11 @@ function App() {
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   }
-
+  
   useEffect(() => {
-    const sections = document.querySelectorAll('.section')
+  // small delay so cards are fully painted before we observe them
+  const timer = setTimeout(() => {
+    const cards = document.querySelectorAll('.bento-card')
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -20,284 +22,272 @@ function App() {
           }
         })
       },
-      { threshold: 0.1 }
+      { threshold: 0.05, rootMargin: '0px 0px -50px 0px' }
     )
 
-    sections.forEach((section) => observer.observe(section))
+    cards.forEach((card) => observer.observe(card))
     return () => observer.disconnect()
-  }, [])
+  }, 100)
+
+  return () => clearTimeout(timer)
+}, [])
 
   const skills = [
     'C++', 'C', 'C#', 'Python', 'JavaScript', 'SQL', 'R', 'Java',
-    'React', 'Node.js', 'Vue.js', 'FastAPI', 'Flask',
+    'React', '.NET', 'Node.js', 'Vue.js', 'FastAPI', 'Flask',
     'MySQL', 'PostgreSQL', 'MongoDB',
-  ]
-
-  const otherProjects = [
-    { label: 'Lead Tracker',        href: 'https://github.com/atonyit/leadTracker' },
-    { label: 'Add to Cart',         href: 'https://github.com/atonyit/addToCart' },
-    { label: 'Tic-Tac-Toe',         href: 'https://github.com/atonyit/Tic-Tac-Toe' },
-    { label: 'Division Calculator',  href: 'https://github.com/atonyit/TestProject' },
   ]
 
   return (
     <div className="app">
       <Header />
 
-      {/* ── Hero ── */}
+      {/* ---- Hero ---- */}
       <section id="home" className="hero">
-        <div className="hero-content">
-          <span className="hero-tag">{'// CS @ University of Houston'}</span>
+        <div className="hero-inner">
+          <div className="hero-eyebrow">
+            <span className="hero-dot" />
+            CS @ University of Houston
+          </div>
+
           <h1 className="hero-title">
             Alan<br />
-            <span className="name-outline">Tony-Itoyah</span>
+            <span className="hero-title-outline">Tony-Itoyah</span>
           </h1>
-          <p className="hero-sub">
-            CS student building full-stack apps, game systems, and data pipelines.
-            Prev @ Spectral AI & Protiviti. Based in Houston, TX.
-          </p>
-          <div className="hero-cta">
-            <button className="btn-primary" onClick={() => scrollTo('projects')}>
-              View Work
-            </button>
-            <button className="btn-ghost" onClick={() => scrollTo('contact')}>
-              Get in Touch
-            </button>
-          </div>
-        </div>
 
-        <div className="bg-noise" aria-hidden="true" />
-        <div className="bg-grid"  aria-hidden="true" />
-        <div className="bg-glow"  aria-hidden="true" />
+          <div className="hero-bottom">
+            <p className="hero-sub">
+              Building full-stack apps, game systems,<br />
+              and data pipelines. Houston, TX.
+            </p>
+            <div className="hero-cta">
+              <button className="btn-primary" onClick={() => scrollTo('projects')}>
+                See my work
+              </button>
+              <a href={resume} download="Alan_Tony-Itoyah_Resume.pdf" className="btn-ghost">
+                Resume ↓
+              </a>
+            </div>
+          </div>
+
+          {/* big decorative number in the corner */}
+          <span className="hero-deco">01</span>
+        </div>
       </section>
 
-      {/* ── About ── */}
-      <section id="about" className="section fade-in">
-        <div className="section-inner">
-          <div className="section-label">
-            <span className="label-num">01</span>
-            <span className="label-text">About</span>
-          </div>
-          <div className="section-body">
-            <h2 className="section-title">Who I Am</h2>
-            <p className="section-text">
-              CS student at UH (Dec '26) with a Math minor, focused on full-stack
-              development and systems design. I've shipped production software at Spectral AI and worked enterprise-scale consulting at Protiviti. Active in NSBE, CougarCS, and ColorStack.
+      {/* ---- About (bento grid) ---- */}
+      <section id="about" className="section">
+        <div className="section-tag">About me</div>
+        <div className="bento-grid">
+
+          {/* big bio card */}
+          <div className="bento-card bento-bio">
+            <span className="card-label">Who I am</span>
+            <p className="bio-text">
+              CS student at UH graduating Dec '26 with a Math minor.
+              I've shipped production software at Spectral AI and done
+              enterprise-scale consulting at Protiviti. Active in NSBE,
+              CougarCS, and ColorStack.
             </p>
+            <div className="bio-tags">
+              <span>Full-stack dev</span>
+              <span>Systems design</span>
+              {/* <span>Applied ML</span> */}
+            </div>
+          </div>
+
+          {/* currently card */}
+          <div className="bento-card bento-currently">
+            <span className="card-label">Currently</span>
+            <ul className="currently-list">
+              <li>📚 Learning .NET & C#</li>
+              <li>🎯 Grinding LeetCode</li>
+              <li>🚀 Open to 2026 roles</li>
+            </ul>
+          </div>
+
+          {/* location card */}
+          <div className="bento-card bento-location">
+            <span className="location-city">Houston</span>
+            <span className="location-state">Texas, USA</span>
+          </div>
+
+          {/* skills card — wide */}
+          <div className="bento-card bento-skills">
+            <span className="card-label">Tech stack</span>
             <div className="skill-chips">
               {skills.map((skill) => (
                 <span key={skill} className="chip">{skill}</span>
               ))}
             </div>
           </div>
+
+          {/* clubs card */}
+          <div className="bento-card bento-clubs">
+            <span className="card-label">Communities</span>
+            <div className="club-list">
+              <span>NSBE</span>
+              <span>CougarCS</span>
+              <span>ColorStack</span>
+            </div>
+          </div>
+
         </div>
       </section>
 
-      {/* ── Projects ── */}
-      <section id="projects" className="section fade-in">
-        <div className="section-inner">
-          <div className="section-label">
-            <span className="label-num">02</span>
-            <span className="label-text">Projects</span>
-          </div>
-          <div className="section-body">
-            <h2 className="section-title">What I've Built</h2>
-            <a
-              href={resume}
-              download="resume.pdf"
-              className="btn-ghost"
-            >
-              Resume ↓
-            </a>
+      {/* ---- Projects (bento grid) ---- */}
+      <section id="projects" className="section">
+        <div className="section-tag">Projects</div>
+        <div className="bento-grid projects-bento">
 
-            {/* featured project */}
-            <div className="project-featured">
-              <span className="project-featured-tag">Featured · React · Node.js · MySQL</span>
-              <h3 className="project-featured-title">Cougar Public Library System</h3>
-              <p className="project-featured-desc">
-                A full-stack library management platform built as a project in class.
-                Supports role-based access for students, librarians, and admins — handling
-                borrowing, fines, holds, and device management end to end.
-              </p>
-              <ul className="project-bullets">
-                <li>Borrowing & returns flow: due dates, renewals, timed hold auto-expiry, and late-fee calculation on return</li>
-                <li>Admin dashboard with role-based access — manage users, books, devices, soft deletes, and audit reports</li>
-                <li>Low-level REST API in Node.js for auth/session handling, pagination, search filters, and transactional MySQL updates</li>
-              </ul>
-              <div className="project-links">
-                <a
-                  href="https://github.com/aadibaahmed/Library_Management_System"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="project-link"
-                >
-                  GitHub →
-                </a>
-              </div>
+          {/* featured — spans 2 columns */}
+          <div className="bento-card bento-featured">
+            <div className="featured-header">
+              <span className="featured-stack">React · Node.js · MySQL</span>
             </div>
-
-            {/* project grid */}
-            <div className="projects-grid">
-              <div className="project-card">
-                <span className="project-tag">Unity · C# · Team of 8</span>
-                <h3 className="project-title">Michelin Apocalypse</h3>
-                <p className="project-desc">
-                  Physics-based co-op restaurant game with three themed levels built
-                  in a team of 8. I owned all level design systems — station layouts,
-                  navigation flow, and task pressure tuning — and led internal
-                  documentation to keep the team aligned across features.
-                </p>
-                <div className="project-links">
-                  <a
-                    href="https://github.com/Klawedd/Cooking-Game"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="project-link"
-                  >
-                    GitHub →
-                  </a>
-                </div>
-              </div>
-
-              <div className="project-card">
-                <span className="project-tag">Hackathon · Translation AI</span>
-                <h3 className="project-title">Transl8</h3>
-                <p className="project-desc">
-                  Translation tool built at a hackathon to break language
-                  barriers in fast-paced learning environments. Focused on low-latency
-                  translation with a clean, minimal interface.
-                </p>
-                <div className="project-links">
-                  <a
-                    href="https://github.com/aadibaahmed/Transl8"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="project-link"
-                  >
-                    GitHub →
-                  </a>
-                </div>
-              </div>
-
-              <div className="project-card">
-                <span className="project-tag">.NET · C# · In Progress</span>
-                <h3 className="project-title">Task Manager</h3>
-                <p className="project-desc">
-                  Currently learning .NET by building a full task management app.
-                  Working through the ecosystem — REST APIs, EF Core, and
-                  building out a clean frontend to go with it.
-                </p>
-                <div className="project-links">
-                  <a
-                    href="https://github.com/atonyit/taskManager"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="project-link"
-                  >
-                    GitHub →
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            {/* smaller/older projects */}
-            <p className="older-label">Earlier work & learning projects</p>
-            <div className="older-projects">
-              {otherProjects.map(({ label, href }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="older-link"
-                >
-                  {label}
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Experience ── */}
-      <section id="experience" className="section fade-in">
-        <div className="section-inner">
-          <div className="section-label">
-            <span className="label-num">03</span>
-            <span className="label-text">Experience</span>
-          </div>
-          <div className="section-body">
-            <h2 className="section-title">Work</h2>
-             <a
-              href={resume}
-              download="resume.pdf"
-              className="btn-ghost"
-            >
-              Resume ↓
-            </a>
-
-            <div className="timeline">
-              <div className="timeline-item">
-                <div className="timeline-meta">
-                  <span className="timeline-date">May – Jul 2025</span>
-                  <span className="timeline-dot" />
-                </div>
-                <div>
-                  <h3 className="timeline-role">Technology Consulting Intern · Protiviti</h3>
-                  <p className="timeline-desc">
-                    Assisted Oracle Cloud implementation across 3 subsidiaries impacting
-                    12+ departments and 150+ users. Collaborated with engineers, analysts,
-                    and stakeholders to standardize enterprise-wide data tracking, and
-                    facilitated CRP testing to identify system defects before production.
-                  </p>
-                </div>
-              </div>
-
-              <div className="timeline-item">
-                <div className="timeline-meta">
-                  <span className="timeline-date">May – Aug 2024</span>
-                  <span className="timeline-dot" />
-                </div>
-                <div>
-                  <h3 className="timeline-role">Software Engineering Intern · Spectral AI</h3>
-                  <p className="timeline-desc">
-                    Owned the full SDLC of an internal tagging portal in Vue.js + FastAPI,
-                    enabling streamlined label workflows across multiple teams. Built RESTful
-                    APIs and modular frontend components in an Agile environment, and optimized
-                    data pipelines to monitor tag lifecycle events — improving data consistency
-                    by 20%.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Contact ── */}
-      <section id="contact" className="section section-last fade-in">
-        <div className="section-inner">
-          <div className="section-label">
-            <span className="label-num">04</span>
-            <span className="label-text">Contact</span>
-          </div>
-          <div className="section-body">
-            <h2 className="section-title contact-heading">
-              Let's<br />
-              <span className="name-outline">Talk.</span>
-            </h2>
-            <p className="section-text">
-              Open to internships, new grad roles, and interesting projects.
-              I respond fast.
+            <h3 className="featured-title">Cougar Public Library System</h3>
+            <p className="featured-desc">
+              Full-stack library management platform with role-based access for
+              students, librarians, and admins. Handles borrowing, fines, holds,
+              and device management end to end.
             </p>
-            <a href="mailto:alanitoyah96@gmail.com" className="btn-primary contact-btn">
+            <ul className="featured-bullets">
+              <li>Borrowing & returns: due dates, renewals, auto-expiry, late fees</li>
+              <li>Admin dashboard — users, books, devices, soft deletes, audit reports</li>
+              <li>REST API in Node.js for auth, pagination, and transactional MySQL</li>
+            </ul>
+            <a
+              href="https://github.com/aadibaahmed/Library_Management_System"
+              target="_blank"
+              rel="noreferrer"
+              className="featured-link"
+            >
+              GitHub →
+            </a>
+          </div>
+
+          {/* project cards */}
+          <div className="bento-card bento-project">
+            <span className="card-label">Unity · C# · Team of 8</span>
+            <h3 className="project-name">Michelin Apocalypse</h3>
+            <p className="project-blurb">
+              Physics-based co-op restaurant game with four themed levels.
+              Owned all level design systems — station layouts, navigation
+              flow, and task pressure tuning.
+            </p>
+            <a href="https://github.com/Klawedd/Cooking-Game" target="_blank" rel="noreferrer" className="project-link">GitHub →</a>
+          </div>
+
+          <div className="bento-card bento-project">
+            <span className="card-label">Hackathon · Translation AI</span>
+            <h3 className="project-name">Transl8</h3>
+            <p className="project-blurb">
+              Translation tool built at a hackathon to break
+              language barriers in fast-paced learning environments.
+            </p>
+            <a href="https://github.com/aadibaahmed/Transl8" target="_blank" rel="noreferrer" className="project-link">GitHub →</a>
+          </div>
+
+          <div className="bento-card bento-project bento-project--wip">
+            <span className="wip-badge">In progress</span>
+            <span className="card-label">.NET · C#</span>
+            <h3 className="project-name">Task Manager</h3>
+            <p className="project-blurb">
+              Learning .NET by building a full task management app —
+              REST APIs, EF Core, and a clean frontend.
+            </p>
+            <a href="https://github.com/atonyit/taskManager" target="_blank" rel="noreferrer" className="project-link">GitHub →</a>
+          </div>
+
+          {/* mini older projects card */}
+          <div className="bento-card bento-older">
+            <span className="card-label">Earlier work</span>
+            <div className="older-links">
+              <a href="https://github.com/atonyit/leadTracker" target="_blank" rel="noreferrer">Lead Tracker</a>
+              <a href="https://github.com/atonyit/addToCart" target="_blank" rel="noreferrer">Add to Cart</a>
+              <a href="https://github.com/atonyit/Tic-Tac-Toe" target="_blank" rel="noreferrer">Tic-Tac-Toe</a>
+              {/* <a href="https://github.com/atonyit/TestProject" target="_blank" rel="noreferrer">Division Calc</a> */}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ---- Experience ---- */}
+      <section id="experience" className="section">
+        <div className="section-tag">Experience</div>
+        <div className="bento-grid exp-bento">
+
+          <div className="bento-card bento-exp">
+            <div className="exp-header">
+              <span className="exp-date">May – Jul 2025</span>
+              <span className="exp-badge">Consulting</span>
+            </div>
+            <h3 className="exp-role">Technology Consulting Intern</h3>
+            <span className="exp-company">Protiviti</span>
+            <p className="exp-desc">
+              Assisted Oracle Cloud implementation across 3 subsidiaries impacting
+              12+ departments and 150+ users. Standardized enterprise-wide data
+              tracking and facilitated CRP testing to catch defects before production.
+            </p>
+          </div>
+
+          <div className="bento-card bento-exp bento-exp--accent">
+            <div className="exp-header">
+              <span className="exp-date">May – Aug 2024</span>
+              <span className="exp-badge">Engineering</span>
+            </div>
+            <h3 className="exp-role">Software Engineering Intern</h3>
+            <span className="exp-company">Spectral AI</span>
+            <p className="exp-desc">
+              Owned full SDLC of an internal tagging portal in Vue.js + FastAPI.
+              Built RESTful APIs and modular frontend components in Agile —
+              improved data consistency by 20%.
+            </p>
+          </div>
+
+          {/* stat cards */}
+          <div className="bento-card bento-stat">
+            <span className="stat-num">2</span>
+            <span className="stat-label">Internships</span>
+          </div>
+
+          <div className="bento-card bento-stat">
+            <span className="stat-num">20%</span>
+            <span className="stat-label">Data consistency improvement @ Spectral AI</span>
+          </div>
+
+          <div className="bento-card bento-stat">
+            <span className="stat-num">150+</span>
+            <span className="stat-label">Users impacted @ Protiviti</span>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ---- Contact ---- */}
+      <section id="contact" className="section">
+        <div className="section-tag">Contact</div>
+        <div className="contact-block">
+          <h2 className="contact-title">
+            Let's build<br />
+            <span className="contact-outline">something.</span>
+          </h2>
+          <p className="contact-sub">
+            Open to internships and new grad roles.
+            I respond fast.
+          </p>
+          <div className="contact-links">
+            <a href="mailto:alanitoyah96@gmail.com" className="btn-primary">
               alanitoyah96@gmail.com →
             </a>
+            <a href="tel:4694386126" className="btn-ghost">
+              469-438-6126
+            </a>
           </div>
         </div>
       </section>
 
-      {/* ── Footer ── */}
       <footer className="footer">
         <span className="footer-text">© 2026 Alan Tony-Itoyah</span>
         <span className="footer-text">Houston, TX</span>

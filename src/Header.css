@@ -1,15 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;600&family=Fraunces:ital,wght@0,900;1,900&display=swap');
 
 :root {
-  --accent: #caff00;
-  --bg: #080808;
+  --accent: #ff6b35;
+  --bg: #0a0a0a;
   --surface: #111111;
-  --surface-2: #1a1a1a;
-  --text: #f0ece0;
-  --muted: #5a5a5a;
+  --text: #f5f0e8;
+  --muted: #555555;
   --border: rgba(255, 255, 255, 0.07);
   --font-display: 'Syne', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
+  /* needs to be here too so hamburger animation works */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .header {
@@ -55,8 +56,7 @@
 }
 
 .logo-wrap:hover .logo {
-  filter: brightness(0) saturate(100%) invert(97%) sepia(60%) saturate(800%)
-    hue-rotate(30deg) brightness(105%);
+  filter: brightness(0) saturate(100%) invert(52%) sepia(72%) saturate(800%) hue-rotate(340deg) brightness(110%);
   transform: rotate(-6deg) scale(1.05);
 }
 
@@ -136,7 +136,7 @@
   height: 2px;
   background: var(--accent);
   transition: width 0.08s linear;
-  box-shadow: 0 0 12px var(--accent), 0 0 24px rgba(202, 255, 0, 0.3);
+  box-shadow: 0 0 12px rgba(255, 107, 53, 0.5);
 }
 
 @media (max-width: 640px) {
