@@ -6,69 +6,103 @@ import { FaGithubSquare } from 'react-icons/fa'
 import { FaLinkedin } from 'react-icons/fa6'
 
 const ParallaxHeader = () => {
-  const [headerHeight, setHeaderHeight] = useState()
-  const [opacity, setOpacity] = useState(1)
+  const [scrolled, setScrolled] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY
-      const newHeight = Math.max(100 - scrollY, 40)
-      const newOpacity = Math.max(1 - scrollY / 100, 0)
-      setHeaderHeight(newHeight)
-      setOpacity(newOpacity)
+      setScrolled(scrollY > 50)
+
+      const totalHeight =
+        document.documentElement.scrollHeight - window.innerHeight
+      if (totalHeight > 0) {
+        setScrollProgress((scrollY / totalHeight) * 100)
+      }
     }
 
-    window.addEventListener('scroll', handleScroll)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const scrollToSection = (id) => {
     const section = document.getElementById(id)
     if (section) {
-      window.scrollTo({
-        top: section.offsetTop - 40,
-        behavior: 'smooth'
-      })
+      window.scrollTo({ top: section.offsetTop - 64, behavior: 'smooth' })
     }
   }
 
   return (
-    <header className="header" style={{ height: `${headerHeight}px`, opacity }}>
-      <nav className="nav flex">
-        <a className="button" href="#" onClick={() => scrollToSection('about')}>
-          Home
-        </a>
-        <a className="button" href="#" onClick={() => scrollToSection('about')}>
-          About
-        </a>
-        <a
-          className="button"
-          href="#"
-          onClick={() => scrollToSection('project')}
+    <header className={`header ${scrolled ? 'scrolled' : ''}`}>
+      <div className="header-inner">
+        {/* Logo */}
+        <div
+          className="logo-wrap"
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          role="button"
+          tabIndex={0}
+          aria-label="Scroll to top"
+          onKeyDown={(e) => e.key === 'Enter' && window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
-          Project
-        </a>
-        <a
-          className="button"
-          href="#"
-          onClick={() => scrollToSection('experiences')}
-        >
-          Experiences
-        </a>
-        <h3
-          className="button"
-          href="#"
-          onClick={() => scrollToSection('contact')}
-        >
-          Contact:
-          <IoIosMail className="icon" />
-          <FaGithubSquare className="icon" />
-          <FaLinkedin className="icon" />
-        </h3>
-      </nav>
-      <img src={headerLogo} alt="Logo" className="logo" />
+          <img src={headerLogo} alt="Logo" className="logo" />
+        </div>
+
+        {/* Nav */}
+        <nav className="nav" aria-label="Main navigation">
+          {[
+            { label: 'About', id: 'about' },
+            { label: 'Projects', id: 'project' },
+            { label: 'Experience', id: 'experiences' },
+          ].map(({ label, id }) => (
+            <button
+              key={id}
+              className="nav-link"
+              onClick={() => scrollToSection(id)}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
+
+        {/* Contact icons */}
+        <div className="contact-icons">
+          <a
+            href="mailto:your@email.com"
+            className="icon-link"
+            aria-label="Email"
+          >
+            <IoIosMail />
+          </a>
+          <a
+            href="https://github.com/yourusername"
+            target="_blank"
+            rel="noreferrer"
+            className="icon-link"
+            aria-label="GitHub"
+          >
+            <FaGithubSquare />
+          </a>
+          <a
+            href="https://linkedin.com/in/yourusername"
+            target="_blank"
+            rel="noreferrer"
+            className="icon-link"
+            aria-label="LinkedIn"
+          >
+            <FaLinkedin />
+          </a>
+        </div>
+      </div>
+
+      {/* Scroll progress */}
+      <div
+        className="progress-bar"
+        style={{ width: `${scrollProgress}%` }}
+        role="progressbar"
+        aria-valuenow={scrollProgress}
+        aria-valuemin={0}
+        aria-valuemax={100}
+      />
     </header>
   )
 }
